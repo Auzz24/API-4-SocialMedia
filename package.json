@@ -1,0 +1,26 @@
+{
+  "name": "api-4-socialmedia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Auzz24/API-4-SocialMedia.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Auzz24/API-4-SocialMedia/issues"
+  },
+  "homepage": "https://github.com/Auzz24/API-4-SocialMedia#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "js": "^0.1.0",
+    "mongoose": "^6.2.7"
+  }
+}
