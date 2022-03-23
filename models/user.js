@@ -26,7 +26,14 @@ const UserSchema = new Schema({
             ref: 'user'
         }
     ]
-})
+});
+
+PizzaSchema.virtual('thoughtCount').get(function() {
+    return this.thoughts.reduce(
+      (total, thought) => total + thought.replies.length + 1,
+      0
+    );
+  });
 
 const User = model('User', UserSchema);
 
