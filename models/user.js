@@ -4,7 +4,7 @@ const UserSchema = new Schema({
     userName:{
         type: String, 
         required: true, 
-        
+
         trim: true,
         unique: true
     },
@@ -27,7 +27,17 @@ const UserSchema = new Schema({
             ref: 'user'
         }
     ]
-});
+},
+//why do we start new brakets again this braket matches with line3 
+{
+    //what doees this mean??? does this creat ID 
+    toJSON: {
+      virtuals: true,
+      getters: true
+    },
+    id: false
+  }
+);
 
 PizzaSchema.virtual('thoughtCount').get(function() {
     return this.thoughts.reduce(
