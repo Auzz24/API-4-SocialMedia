@@ -21,16 +21,14 @@ const UserSchema = new Schema({
             ref: 'thought'
         }
     ],
-    firends:[
+    friends:[
         {
             type: Schema.Types.ObjectId,
             ref: 'user'
         }
     ]
 },
-//why do we start new brakets again this braket matches with line3 
 {
-    //what doees this mean??? does this creat ID 
     toJSON: {
       virtuals: true,
       getters: true
@@ -39,11 +37,8 @@ const UserSchema = new Schema({
   }
 );
 
-PizzaSchema.virtual('thoughtCount').get(function() {
-    return this.thoughts.reduce(
-      (total, thought) => total + thought.replies.length + 1,
-      0
-    );
+UserSchema.virtual('friendCount').get(function() {
+    return this.friends.length 
   });
 
 const User = model('User', UserSchema);
