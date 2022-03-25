@@ -1,14 +1,22 @@
 const router = require('express').Router();
 
-// const{
-//     getAllThought,
-//     getThoughtById,
-//     // create the thought and updte the user in this route 
-//     createThoughtByUserID,
-//     updateThoughtByID,
-//     deleteThoughtByID
-// } = require('../../controllers/thought-controller');
+// const { addReaction } = require('../../controllers/thought-contoller');
+const{
+    addThought,
+    addReaction
+    // getThoughtById,
+    // createThoughtByUserID,
+    // updateThoughtByID,
+    // deleteThoughtByID
+} = require('../../controllers/thought-contoller');
 
+router 
+.route('/')
+// .get(getAllUser)
 
+router
+  .route('/:userId/:thoughtId')
+  .put(addThought)
+  .put(addReaction)
 
 module.exports = router;
