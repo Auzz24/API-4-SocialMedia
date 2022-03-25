@@ -2,8 +2,8 @@ const router = require('express').Router();
 
 // const { addReaction } = require('../../controllers/thought-contoller');
 const{
-    addThought,
-    addReaction
+    addThoughts
+    // addReaction
     // getThoughtById,
     // createThoughtByUserID,
     // updateThoughtByID,
@@ -12,11 +12,12 @@ const{
 
 router 
 .route('/')
+.post(addThoughts)
 // .get(getAllUser)
 
 router
   .route('/:userId/:thoughtId')
-  .put(addThought)
-  .put(addReaction)
+//   .put(addThought)
+//   .put(addReaction)
 
 module.exports = router;
