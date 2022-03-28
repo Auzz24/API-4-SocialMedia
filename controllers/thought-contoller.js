@@ -2,26 +2,42 @@ const { Thought, User } = require('../models');
 
 const thoughtController = {
 
-  addThoughts ({ params }, res) {
+  createThought ({ params, body }, res) {
     console.log(params);
-    Thought.create()
+    Thought.create(body)
       .then(({ _id }) => {
         return User.findOneAndUpdate(
-          { _id: params.userId },
-          { $push: { thought: _id } },
+          { _id: params.user_id },
+          { $push: { thoughts: _id } },
           { new: true }
         );
       })
       .then(dbUserData => {
         console.log(dbUserData);
-        if (!dbUserData) {
+        if (!dbUsertData) {
           res.status(404).json({ message: 'No User found' });
           return;
         }
-        res.json(dbUserData);
+        res.json(dbThoughtData);
       })
       .catch(err => res.json(err));
   },
+
+  getAllThought(req, res) {
+    Thought.find({})
+      .then(dbThoughtData => res.json(dbThoughtData))
+      .catch(err => {
+        console.log(err);
+        res.sendStatus(400);
+      });
+  },
+
+  deleteThought({ params }, res) {
+    Thought.findOneAndDelete({ _id: params._id })
+      .then(dbThoughtData => res.json(dbThoughtData))
+      .catch(err => res.json(err));
+  }
+};
   // // get one User by id
   // getUserById({ params }, res) {
   //   User.findOne({ _id: params.id })
@@ -48,6 +64,6 @@ const thoughtController = {
   //         .catch(err => res.json(err));
   //     },
 
-}
+
 
 module.exports = thoughtController; 
