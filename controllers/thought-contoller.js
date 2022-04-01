@@ -56,21 +56,30 @@ const thoughtController = {
       })
       .catch(err => res.json(err));
   },
-  // createReaction({ params, body }, res) {
-  //   Thought.findOneAndUpdate(
-  //     { _id: params.reactionId },
-  //     { $push: { replies: body } },
-  //     { new: true, runValidators: true }
-  //   )
-  //     .then(dbThoughtData => {
-  //       if (!dbThoughtData) {
-  //         res.status(404).json({ message: 'No thought found' });
-  //         return;
-  //       }
-  //       res.json(dbThoughtData);
-  //     })
-  //     .catch(err => res.json(err));
-  // },
+  //dextructured reqests to params and body, now its req.body req.params
+  createReaction({ params, body }, res) {
+    //
+    Thought.findOneAndUpdate(
+      { _id: params.thoughtId },
+      { $push: { reactions: body } },
+      { new: true, runValidators: true }
+    )
+      .then(dbThoughtData => {
+        if (!dbThoughtData) {
+          res.status(404).json({ message: 'No thought found' });
+          return;
+        }
+        res.json(dbThoughtData);
+      })
+      .catch(err => res.json(err));
+  },
+  deleteReaction({ params, body }, res) {
+    Thought.findOneAndDelete({ _id: params.thoughtid },
+      { $pull: { reactions: body } },
+    )
+      .then(dbThoughtData => res.json(dbThoughtData))
+      .catch(err => res.json(err));
+  }
 };
 
 
